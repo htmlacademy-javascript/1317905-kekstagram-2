@@ -26,7 +26,7 @@ function extractNumber(str) {
     str = str.toString();
   }
   let elements = '';
-  for (let i = 0; i < str.lenght; i++) {
+  for (let i = 0; i < str.length; i++) {
     const char = str[i];
     const num = parseInt(char, 10);
 
