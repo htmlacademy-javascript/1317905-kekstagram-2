@@ -3,7 +3,7 @@ function strLenght(str, maxLength) {
   const result = str.length <= maxLength;
   return result;
 }
-strLenght('всем привет', 10);
+strLenght();
 
 //Или стрелочная:
 //const strLength = (str, maxLength) => str.length <= maxLength;
@@ -18,7 +18,7 @@ function isPalindrome(str) {
   }
   return reversedString === normalizedString;
 }
-isPalindrome('А роза упала на лапу Азора');
+isPalindrome();
 
 //Дополнительное задание
 function extractNumber(str) {
@@ -36,4 +36,4 @@ function extractNumber(str) {
   }
   return elements.length > 0 ? parseInt(elements, 10) : NaN;
 }
-extractNumber('погода15');
+extractNumber();
