@@ -18,17 +18,12 @@ function isPalindrome(str) {
   }
   return reversedString === normalizedString;
 }
-
 isPalindrome('А роза упала на лапу Азора');
 
 //Дополнительное задание
 function extractNumber(str) {
   if (typeof str === 'number') {
     str = str.toString();
-  }
-
-  if (typeof str !== 'number') {
-    return NaN;
   }
   let elements = '';
   for (let i = 0; i < str.lenght; i++) {
