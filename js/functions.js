@@ -1,12 +1,6 @@
 //Функция для проверки длины строки
-function strLenght(str, maxLength) {
-  const result = str.length <= maxLength;
-  return result;
-}
-strLenght('проверяемая строка', 20);
-
-//Или стрелочная:
-//const strLength = (str, maxLength) => str.length <= maxLength;
+const strLength = (str, maxLength) => str.length <= maxLength;
+strLength('проверяемая строка', 20);
 
 //Функция для проверки, является ли строка палиндромом
 function isPalindrome(str) {
@@ -28,12 +22,10 @@ function extractNumber(str) {
   let elements = '';
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
-    const num = parseInt(char, 10);
-
-    if (!Number.isNaN(num)) {
+    if (!isNaN(char)) {
       elements += char;
     }
   }
-  return elements.length > 0 ? parseInt(elements, 10) : NaN;
+  return elements.length > 0 ? Number(elements) : NaN;
 }
 extractNumber('150');
