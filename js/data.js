@@ -1,7 +1,7 @@
 import {getRandomArrayElement, getRandomInteger, generatePhotoId} from './util.js';
 import {createComment} from './create-comment.js';
 
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Отличный день для фото!',
   'Сегодня волшебный закат',
   'Момент, который стоит запомнить',
@@ -23,7 +23,7 @@ const PHOTO_ARRAY_COUNT = 25;
 const createPhoto = () => ({
   id: generatePhotoId(),
   url: `photos/${getRandomInteger(1 , MAX_PHOTO_NUMBER)}.jpg`,
-  description: getRandomArrayElement(DESCRIPTION),
+  description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
   comments: Array.from({length: getRandomInteger(0, MAX_COMMENTS)}, createComment)
 });
