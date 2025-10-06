@@ -5,11 +5,11 @@ const pictureTemplate = document.querySelector('#picture').content.querySelector
 const pictureList = document.querySelector('.pictures');
 
 
-const userPhotos = createPhotos ();
+const userPhotos = createPhotos();
 
 const picturesFragment = document.createDocumentFragment();
 
-userPhotos.forEach(({url, description, likes, comments }) => {
+userPhotos.forEach(({ url, description, likes, comments }) => {
   const pictureElement = pictureTemplate.cloneNode(true);
   pictureElement.querySelector('.picture__img').src = url;
   pictureElement.querySelector('.picture__img').alt = description;
