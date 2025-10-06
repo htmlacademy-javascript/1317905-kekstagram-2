@@ -29,3 +29,21 @@ function extractNumber(str) {
   return elements.length > 0 ? Number(elements) : NaN;
 }
 extractNumber('150');
+
+
+//Функции возвращаются
+function checkMeetingTime (workStart, workEnd, meetingStart, meetingDuration) {
+  //Преобразование времени в минуты
+  function timeToMinutes (timeString) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+  const workStartInMinutes = timeToMinutes (workStart);
+  const workEndInMinutes = timeToMinutes (workEnd);
+  const meetingStartInMinutes = timeToMinutes (meetingStart);
+  const meetingEndInMinutes = meetingStartInMinutes + meetingDuration;
+
+  return meetingStartInMinutes >= workStartInMinutes && meetingEndInMinutes <= workEndInMinutes;
+
+}
+console.log(checkMeetingTime ('08:00', '18:00', '17:00', 120));
