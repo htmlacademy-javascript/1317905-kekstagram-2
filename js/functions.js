@@ -32,12 +32,12 @@ extractNumber('150');
 
 
 //Функции возвращаются
+//Преобразование времени в минуты
+function timeToMinutes (timeString) {
+  const [hours, minutes] = timeString.split(':').map(Number);
+  return hours * 60 + minutes;
+}
 function checkMeetingTime (workStart, workEnd, meetingStart, meetingDuration) {
-  //Преобразование времени в минуты
-  function timeToMinutes (timeString) {
-    const [hours, minutes] = timeString.split(':').map(Number);
-    return hours * 60 + minutes;
-  }
   const workStartInMinutes = timeToMinutes (workStart);
   const workEndInMinutes = timeToMinutes (workEnd);
   const meetingStartInMinutes = timeToMinutes (meetingStart);
