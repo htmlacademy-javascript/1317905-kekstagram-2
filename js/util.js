@@ -1,5 +1,6 @@
 const MAX_PHOTO_ID = 25;
-const MAX_COMMENT_ID = 200;
+const MAX_COMMENT_ID = 1000;
+const MAX_PHOTO_NUMBER = 25;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -10,15 +11,15 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-//Генерация ID
+// Генератор ID и уникальных номеров
 function createRandomIdGenerator(min, max) {
   const previousValues = [];
 
   return function() {
-    let currentValue = getRandomInteger(min, max);
     if (previousValues.length >= (max - min + 1)) {
-      return null;
+      previousValues.length = 0; // Очищаем массив
     }
+    let currentValue = getRandomInteger(min, max);
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomInteger(min, max);
     }
@@ -29,6 +30,6 @@ function createRandomIdGenerator(min, max) {
 
 const generatePhotoId = createRandomIdGenerator(1, MAX_PHOTO_ID);
 const generateCommentId = createRandomIdGenerator(1, MAX_COMMENT_ID);
+const generatePhotoUrl = createRandomIdGenerator(1, MAX_PHOTO_NUMBER);
 
-
-export {getRandomInteger, getRandomArrayElement, generatePhotoId, generateCommentId};
+export {getRandomInteger, getRandomArrayElement, generatePhotoId, generateCommentId, generatePhotoUrl};
