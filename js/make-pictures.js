@@ -1,11 +1,12 @@
-import {createPhotos} from './data.js';
+import { photosData } from './gallery.js';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const pictureList = document.querySelector('.pictures');
 
 
-const userPhotos = createPhotos();
+const userPhotos = photosData;
+
 
 const picturesFragment = document.createDocumentFragment();
 
@@ -15,7 +16,11 @@ userPhotos.forEach(({ url, description, likes, comments }) => {
   pictureElement.querySelector('.picture__img').alt = description;
   pictureElement.querySelector('.picture__likes').textContent = likes;
   pictureElement.querySelector('.picture__comments').textContent = comments.length;
+
+
   picturesFragment.appendChild(pictureElement);
 });
 
 pictureList.appendChild(picturesFragment);
+
+
