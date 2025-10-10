@@ -1,5 +1,4 @@
-import {createPhotos} from './data.js';
+import { createPhotos } from './data.js';
 
-const photosData = createPhotos();
-
-export {photosData};
+const userPhotos = createPhotos();
+export {userPhotos};

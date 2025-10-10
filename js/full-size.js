@@ -1,7 +1,7 @@
 import { isEscapeKey } from './util.js';
-import { photosData } from './gallery.js';
+import { userPhotos } from './gallery.js';
 
-const pictures = document.querySelectorAll('.picture');
+const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -11,8 +11,8 @@ const likesCount = bigPicture.querySelector('.likes-count');
 const socialCommentShowCount = bigPicture.querySelector('.social__comment-shown-count');
 const socialCommentTotalCount = bigPicture.querySelector('.social__comment-total-count');
 const socialCommentList = bigPicture.querySelector('.social__comments');
+const socialCommentItem = socialCommentList.querySelector('.social__comment');
 const socialCaption = bigPicture.querySelector('.social__caption');
-
 
 const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -23,36 +23,34 @@ const onDocumentKeyDown = (evt) => {
 
 // Создаем элемент комментария
 function createCommentElement(comment) {
-  const commentElement = document.createElement('li');
-  commentElement.classList.add('social__comment');
+  const commentElementFragment = document.createDocumentFragment();
+  const commentElement = socialCommentItem.cloneNode(true);
+  commentElement.querySelector('.social__picture').src = comment.avatar;
+  commentElement.querySelector('.social__picture').alt = comment.name;
+  commentElement.querySelector('.social__text').textContent = comment.message;
 
-  commentElement.innerHTML = `<img
-    class="social__picture"
-    src="${comment.avatar}"
-    alt="${comment.name}"
-    width="35" height="35">
-  <p class="social__text">${comment.message}</p>
-  `;
-  return commentElement;
+  commentElementFragment.appendChild(commentElement);
+  socialCommentList.appendChild(commentElementFragment);
 }
 
-//Создаем функцию заполнения данными полноразмерного фото
-function createFullPhotoData(photoData) {
-  bigPictureImg.src = photoData.url;
-  bigPictureImg.alt = photoData.description;
-  likesCount.textContent = photoData.likes;
-  socialCommentTotalCount.textContent = photoData.comments.length;
-  socialCommentShowCount.textContent = photoData.comments.length;
-  socialCaption.textContent = photoData.description;
+// Функция заполнения данными
+function createFullPhotoData(photo) {
+  bigPictureImg.src = photo.url;
+  bigPictureImg.alt = photo.description;
+  likesCount.textContent = photo.likes;
+  socialCommentTotalCount.textContent = photo.comments.length;
+  socialCommentShowCount.textContent = photo.comments.length;
+  socialCaption.textContent = photo.description;
 
   socialCommentList.innerHTML = '';
-  photoData.comments.forEach((comment) => {
-    socialCommentList.appendChild(createCommentElement(comment));
+  photo.comments.forEach((comment) => {
+    createCommentElement(comment);
   });
 }
 
 // Открытие полноразмерного фото
-function openBigPicture() {
+function openBigPicture(photo) {
+  createFullPhotoData(photo);
   bigPicture.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentKeyDown);
   socialCommentCount.classList.add('hidden');
@@ -60,25 +58,28 @@ function openBigPicture() {
   document.body.classList.add('modal-open');
 }
 
+
+// Закрытие полноразмерного фото
 function closeBigPicture() {
   bigPicture.classList.add('hidden');
   document.removeEventListener('keydown', onDocumentKeyDown);
   document.body.classList.remove('modal-open');
 }
 
-
-const addPictureClickHandler = function (picture, photo) {
-  picture.addEventListener('click', () => {
-    createFullPhotoData(photo);
-    openBigPicture();
-  });
-};
-
-for (let i = 0; i < pictures.length; i++) {
-  addPictureClickHandler(pictures[i], photosData[i]);
+//Клик по миниатюре
+function onPictureClick(evt) {
+  const currentPicture = evt.target.closest('.picture');
+  if (currentPicture) {
+    evt.preventDefault();
+    // Получаем индекс из data-атрибута и находим соответствующие данные
+    const index = currentPicture.dataset.index;
+    const photoData = userPhotos[index];
+    openBigPicture(photoData);
+  }
 }
+
+pictures.addEventListener('click', onPictureClick);
 
 bigPictureClose.addEventListener('click', () => {
   closeBigPicture();
 });
-
