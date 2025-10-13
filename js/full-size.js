@@ -6,7 +6,6 @@ const bigPicture = document.querySelector('.big-picture');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
-//const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const socialCommentsLoader = bigPicture.querySelector('.social__comments-loader');
 const socialCommentShowCount = bigPicture.querySelector('.social__comment-shown-count');
 const socialCommentTotalCount = bigPicture.querySelector('.social__comment-total-count');
