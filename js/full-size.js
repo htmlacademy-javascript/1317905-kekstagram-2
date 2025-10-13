@@ -59,7 +59,7 @@ function renderCommentsBlock() {
   currentCommentsCount += COMMENTS_STEP;
 }
 
-
+//Очистка комментариев
 function clearComments() {
   currentCommentsCount = 0;
   comments = [];
@@ -68,7 +68,7 @@ function clearComments() {
   socialCommentsLoader.removeEventListener('click', renderCommentsBlock);
 }
 
-
+//Инициализация комментариев
 function initComments(currentComments) {
   comments = currentComments;
   currentCommentsCount = 0;
@@ -114,7 +114,6 @@ function closeBigPicture() {
   bigPicture.classList.add('hidden');
 
   document.removeEventListener('keydown', onDocumentKeyDown);
-
   document.body.classList.remove('modal-open');
 
   clearComments();
