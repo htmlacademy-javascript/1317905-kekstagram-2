@@ -93,8 +93,6 @@ function createFullPhotoData(pictureId) {
   bigPictureImg.src = currentPhoto.url;
   bigPictureImg.alt = currentPhoto.description;
   likesCount.textContent = currentPhoto.likes;
-  socialCommentTotalCount.textContent = currentPhoto.comments.length;
-  socialCommentShowCount.textContent = currentPhoto.comments.length;
   socialCaption.textContent = currentPhoto.description;
 
   initComments(currentPhoto.comments);
@@ -113,12 +111,13 @@ function openBigPicture(pictureId) {
 
 // Закрытие полноразмерного фото
 function closeBigPicture() {
-  clearComments();
   bigPicture.classList.add('hidden');
 
   document.removeEventListener('keydown', onDocumentKeyDown);
 
   document.body.classList.remove('modal-open');
+
+  clearComments();
 
 }
 
