@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { userPhotos } from './data.js';
-import {clearComments, initComments} from './render-comments.js';
+import { clearComments, initComments } from './render-comments.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
