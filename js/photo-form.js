@@ -1,5 +1,6 @@
 import { isEscapeKey } from './util.js';
 
+
 const uploadForm = document.querySelector('.img-upload__form');
 const uploaderControll = uploadForm.querySelector('.img-upload__input');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
@@ -8,6 +9,10 @@ const uploadCancel = uploadForm.querySelector('.img-upload__cancel');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const descriptionInput = uploadForm.querySelector('.text__description');
 
+
+const HASHTAG_LENGTH = 20;
+const HASHTAG_ARRAY_LENGTH = 5;
+const COMMENT_LENGTH = 140;
 
 // Обработчик клавиатуры
 const onDocumentKeyDown = (evt) => {
@@ -33,6 +38,7 @@ const openImgUploader = () => {
 
   hashtagInput.addEventListener('keydown', onFieldKeyDown);
   descriptionInput.addEventListener('keydown', onFieldKeyDown);
+
 };
 
 
@@ -64,8 +70,8 @@ const validateHashtags = (value) => {
   const seenHashtags = new Set();
   const regex = /^#[a-zA-Zа-яА-ЯёЁ0-9]{1,19}$/;
 
-  if (hashtagsArray.length > 5) {
-    return { valid: false, message: 'Нельзя указать больше пяти хэштегов' };
+  if (hashtagsArray.length > HASHTAG_ARRAY_LENGTH) {
+    return { valid: false, message: `Нельзя указать больше ${HASHTAG_ARRAY_LENGTH} хэштегов` };
   }
 
   for (const hashtag of hashtagsArray) {
@@ -76,8 +82,8 @@ const validateHashtags = (value) => {
     if (hashtag === '#') {
       return { valid: false, message: 'Хэштег не может состоять только из решётки' };
     }
-    if (hashtag.length > 20) {
-      return { valid: false, message: 'Максимальная длина хэштега не более 20 символов' };
+    if (hashtag.length > HASHTAG_LENGTH) {
+      return { valid: false, message: `Максимальная длина хэштега не более ${HASHTAG_LENGTH} символов` };
     }
     if (hashtag.indexOf('#', 1) !== -1) {
       return { valid: false, message: 'Хэштеги должны разделяться пробелами' };
@@ -103,9 +109,9 @@ pristine.addValidator(hashtagInput, validateResult, validateErrorMessage);
 
 
 //Валидация формы комментария
-const validateDescriptionInput = (value) => value.length <= 140;
+const validateDescriptionInput = (value) => value.length <= COMMENT_LENGTH;
 
-pristine.addValidator(descriptionInput, validateDescriptionInput, 'Не более 140 символов');
+pristine.addValidator(descriptionInput, validateDescriptionInput, `Не более ${COMMENT_LENGTH} символов`);
 
 
 uploadForm.addEventListener('submit', (evt) => {
@@ -123,6 +129,7 @@ function closeImgUploader () {
 
   hashtagInput.removeEventListener('keydown', onFieldKeyDown);
   descriptionInput.removeEventListener('keydown', onFieldKeyDown);
+
 
   uploadForm.reset();
   pristine.reset();
