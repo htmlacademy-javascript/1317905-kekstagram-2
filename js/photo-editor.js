@@ -143,10 +143,8 @@ const resetSlider = (effect) => {
 
 effectsList.addEventListener('change', (evt)=> {
   const radio = evt.target.closest('.effects__radio');
-  if (radio) {
-    const effect = radio.value;
-    resetSlider(effect);
-  }
+  const effect = radio.value;
+  resetSlider(effect);
 });
 
 
