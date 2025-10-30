@@ -18,7 +18,7 @@ const scaleSmaller = uploadForm.querySelector('.scale__control--smaller');
 const scaleBigger = uploadForm.querySelector('.scale__control--bigger');
 
 const SubmitButtonText = {
-  IDLE: 'Сохранить',
+  IDLE: submitButton.textContent,
   SENDING: 'Сохраняю...'
 };
 
