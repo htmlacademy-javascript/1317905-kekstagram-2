@@ -2,6 +2,7 @@ const MAX_PHOTO_ID = 25;
 const MAX_COMMENT_ID = 1000;
 const MAX_PHOTO_NUMBER = 25;
 
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -34,6 +35,6 @@ const generatePhotoUrl = createRandomIdGenerator(1, MAX_PHOTO_NUMBER);
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomArrayElement, generatePhotoId, generateCommentId, generatePhotoUrl, isEscapeKey};
+export {getRandomInteger, getRandomArrayElement, generatePhotoId, generateCommentId, generatePhotoUrl, isEscapeKey };
 
 

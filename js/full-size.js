@@ -1,6 +1,7 @@
 import { isEscapeKey } from './util.js';
-import { userPhotos } from './data.js';
+//import { userPhotos } from './data.js';
 import { clearComments, initComments } from './render-comments.js';
+
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -9,6 +10,8 @@ const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const socialCaption = bigPicture.querySelector('.social__caption');
 
+
+let photos = [];
 
 // Обработчик клавиатуры
 const onDocumentKeyDown = (evt) => {
@@ -19,9 +22,13 @@ const onDocumentKeyDown = (evt) => {
 };
 
 
+const setPhotoData = (data) => {
+  photos = data;
+};
+
 // Функция заполнения данными
 const createFullPhotoData = (pictureId) => {
-  const currentPhoto = userPhotos.find((photo) => photo.id === Number(pictureId));
+  const currentPhoto = photos.find((photo) => photo.id === Number(pictureId));
 
   bigPictureImg.src = currentPhoto.url;
   bigPictureImg.alt = currentPhoto.description;
@@ -60,3 +67,5 @@ bigPictureClose.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeBigPicture();
 });
+
+export {setPhotoData};
