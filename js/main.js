@@ -7,7 +7,6 @@ import { dataErrorMessage } from './messages.js';
 
 getData()
   .then((photos) => {
-    //console.log(photos);
     createPhotosList(photos);
     setPhotoData(photos);
   })
