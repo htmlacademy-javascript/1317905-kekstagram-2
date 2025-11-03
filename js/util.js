@@ -45,21 +45,7 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-function throttle (callback, delayBetweenFrames) {
 
-  let lastTime = 0;
-
-  return (...rest) => {
-
-    const now = new Date();
-
-    if (now - lastTime >= delayBetweenFrames) {
-      callback.apply(this, rest);
-      lastTime = now;
-    }
-  };
-}
-
-export {getRandomInteger, getRandomArrayElement, generatePhotoId, generateCommentId, generatePhotoUrl, isEscapeKey, debounce, throttle };
+export {getRandomInteger, getRandomArrayElement, generatePhotoId, generateCommentId, generatePhotoUrl, isEscapeKey, debounce };
 
 
