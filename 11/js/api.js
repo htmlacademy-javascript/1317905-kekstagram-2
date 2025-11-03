@@ -10,7 +10,6 @@ const Method = {
 
 
 const load = async (route, method = Method.GET, body = null) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(`${BASE_URL}${route}`, {method, body});
     if (!response.ok) {
