@@ -77,22 +77,22 @@ const unblockSubmitButton = () => {
   submitButton.textContent = SubmitButtonText.IDLE;
 };
 
+
 const setUserFormSubmit = (onSuccess) => {
-  uploadForm.addEventListener('submit', (evt) => {
+  uploadForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
     if (isValid) {
       blockSubmitButton();
-      sendData(new FormData(evt.target))
-        .then(() => {
-          onSuccess();
-          successMessage();
-        })
-        .catch(() => {
-          errorMessage();
-        }
-        )
-        .finally(unblockSubmitButton);
+      try {
+        await sendData(new FormData(evt.target));
+        onSuccess();
+        successMessage();
+      } catch {
+        errorMessage();
+      } finally {
+        unblockSubmitButton();
+      }
     }
   });
 };

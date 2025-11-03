@@ -1,17 +1,19 @@
-import {createPhotosList} from './make-pictures.js';
-import {setPhotoData} from './full-size.js';
+import { createPhotosList } from './make-pictures.js';
+import { setPhotoData } from './full-size.js';
 import { setUserFormSubmit, closeImgUploader } from './photo-form.js';
 import { getData } from './api.js';
 import { dataErrorMessage } from './messages.js';
 
 
-getData()
-  .then((photos) => {
+(async () => {
+  try {
+    const photos = await getData();
     createPhotosList(photos);
     setPhotoData(photos);
-  })
-  .catch(() => {
+  } catch {
     dataErrorMessage();
-  });
+  }
+}) ();
+
 
 setUserFormSubmit(closeImgUploader);
