@@ -7,6 +7,11 @@ const filtersForm = document.querySelector('.img-filters');
 const RANDOM_COUNT = 10;
 const DEBOUNCE_DELAY = 500;
 
+const FILTERS = {
+  FILTER_DEFAULT: 'filter-default',
+  FILTER_RANDOM: 'filter-random',
+  FILTER_DISCUSSED: 'filter-discussed'
+};
 
 let currentPhotos = [];
 
@@ -40,13 +45,13 @@ const onFiltersFormClick = (evt) => {
 
   let filteredPhotos;
   switch (filterClickedButton.id) {
-    case 'filter-default':
+    case FILTERS.FILTER_DEFAULT:
       filteredPhotos = getDefaultPhotos();
       break;
-    case 'filter-random':
+    case FILTERS.FILTER_RANDOM:
       filteredPhotos = getRandomPhotos();
       break;
-    case 'filter-discussed':
+    case FILTERS.FILTER_DISCUSSED:
       filteredPhotos = getDiscussedPhotos();
       break;
   }
