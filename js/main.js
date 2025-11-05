@@ -3,6 +3,7 @@ import { setPhotoData } from './full-size.js';
 import { setUserFormSubmit, closeImgUploader } from './photo-form.js';
 import { getData } from './api.js';
 import { dataErrorMessage } from './messages.js';
+import { initFilters } from './filters.js';
 
 
 (async () => {
@@ -10,6 +11,7 @@ import { dataErrorMessage } from './messages.js';
     const photos = await getData();
     createPhotosList(photos);
     setPhotoData(photos);
+    initFilters(photos);
   } catch {
     dataErrorMessage();
   }
