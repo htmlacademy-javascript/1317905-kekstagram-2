@@ -17,6 +17,11 @@ const descriptionInput = uploadForm.querySelector('.text__description');
 const scaleSmaller = uploadForm.querySelector('.scale__control--smaller');
 const scaleBigger = uploadForm.querySelector('.scale__control--bigger');
 
+const imgPreview = uploadForm.querySelector('.img-upload__preview img');
+const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
+
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const SubmitButtonText = {
   IDLE: submitButton.textContent,
   SENDING: 'Сохраняю...'
@@ -53,6 +58,17 @@ const openImgUploader = () => {
 
   scaleSmaller.addEventListener('click', onScaleSmaller);
   scaleBigger.addEventListener('click', onScaleBigger);
+
+  const file = uploaderControll.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    imgPreview.src = URL.createObjectURL(file);
+    effectsPreview.forEach((preview) => {
+      preview.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    });
+  }
 
 };
 
@@ -114,6 +130,11 @@ function closeImgUploader () {
 
   uploadForm.reset();
   pristine.reset();
+
+  imgPreview.src = '';
+  effectsPreview.forEach((preview) => {
+    preview.style.backgroundImage = '';
+  });
 }
 
 export {setUserFormSubmit, openImgUploader, closeImgUploader};
