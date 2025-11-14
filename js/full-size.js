@@ -2,7 +2,7 @@ import { isEscapeKey } from './util.js';
 import { clearComments, initComments } from './render-comments.js';
 
 
-const pictures = document.querySelector('.pictures');
+const pictureList = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -54,7 +54,7 @@ function closeBigPicture () {
 }
 
 
-pictures.addEventListener('click', (evt) => {
+pictureList.addEventListener('click', (evt) => {
   const currentPicture = evt.target.closest('.picture');
   if (currentPicture) {
     evt.preventDefault();

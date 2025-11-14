@@ -1,11 +1,13 @@
 import { isEscapeKey } from './util.js';
 import { pristine } from './photo-form-validation.js';
 import { onScaleSmaller, onScaleBigger, resetScaleEditor, resetSlider } from './photo-editor.js';
-import { errorMessage, successMessage } from './messages.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
 import { sendData } from './api.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const uploadForm = document.querySelector('.img-upload__form');
-const uploaderControll = uploadForm.querySelector('.img-upload__input');
+const uploaderControl = uploadForm.querySelector('.img-upload__input');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const uploadCancel = uploadForm.querySelector('.img-upload__cancel');
 
@@ -19,8 +21,6 @@ const scaleBigger = uploadForm.querySelector('.scale__control--bigger');
 
 const imgPreview = uploadForm.querySelector('.img-upload__preview img');
 const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
-
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const SubmitButtonText = {
   IDLE: submitButton.textContent,
@@ -59,7 +59,7 @@ const openImgUploader = () => {
   scaleSmaller.addEventListener('click', onScaleSmaller);
   scaleBigger.addEventListener('click', onScaleBigger);
 
-  const file = uploaderControll.files[0];
+  const file = uploaderControl.files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
@@ -73,7 +73,7 @@ const openImgUploader = () => {
 };
 
 
-uploaderControll.addEventListener('change' , () => {
+uploaderControl.addEventListener('change' , () => {
   openImgUploader();
 });
 
@@ -103,9 +103,9 @@ const setUserFormSubmit = (onSuccess) => {
       try {
         await sendData(new FormData(evt.target));
         onSuccess();
-        successMessage();
+        showSuccessMessage();
       } catch {
-        errorMessage();
+        showErrorMessage();
       } finally {
         unblockSubmitButton();
       }

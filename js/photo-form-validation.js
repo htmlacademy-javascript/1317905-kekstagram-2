@@ -1,12 +1,11 @@
+const HASHTAG_LENGTH = 20;
+const HASHTAG_ARRAY_LENGTH = 5;
+const COMMENT_LENGTH = 140;
 
 const uploadForm = document.querySelector('.img-upload__form');
 
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const descriptionInput = uploadForm.querySelector('.text__description');
-
-const HASHTAG_LENGTH = 20;
-const HASHTAG_ARRAY_LENGTH = 5;
-const COMMENT_LENGTH = 140;
 
 
 const pristine = new Pristine(uploadForm, {
