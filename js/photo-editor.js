@@ -1,18 +1,3 @@
-const uploadForm = document.querySelector('.img-upload__form');
-const imagePreview = uploadForm.querySelector('.img-upload__preview img');
-
-// Элементы масштабирования
-const scaleControlValue = uploadForm.querySelector('.scale__control--value');
-
-
-// Элементы эффектов
-const effectsList = uploadForm.querySelector('.effects__list');
-const effectLevelContainer = uploadForm.querySelector('.img-upload__effect-level');
-const effectLevelSlider = uploadForm.querySelector('.effect-level__slider');
-const effectLevelValue = uploadForm.querySelector('.effect-level__value');
-
-let currentScale = 100;
-
 const SCALE_STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
@@ -62,6 +47,22 @@ const effectSettings = {
     unit: ''
   }
 };
+
+const uploadForm = document.querySelector('.img-upload__form');
+const imagePreview = uploadForm.querySelector('.img-upload__preview img');
+
+// Элементы масштабирования
+const scaleControlValue = uploadForm.querySelector('.scale__control--value');
+
+
+// Элементы эффектов
+const effectsList = uploadForm.querySelector('.effects__list');
+const effectLevelContainer = uploadForm.querySelector('.img-upload__effect-level');
+const effectLevelSlider = uploadForm.querySelector('.effect-level__slider');
+const effectLevelValue = uploadForm.querySelector('.effect-level__value');
+
+let currentScale = 100;
+
 
 const updateScale = (value) => {
   currentScale = value;

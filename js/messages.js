@@ -1,12 +1,13 @@
 import { isEscapeKey } from './util.js';
 
+
+const ALERT_SHOW_TIME = 5000;
+
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 
 let currentMessage = null;
-
-const ALERT_SHOW_TIME = 5000;
 
 // Обработчики
 const onOutsideClick = (evt) => {
@@ -44,7 +45,7 @@ function removeMessage () {
 }
 
 
-const successMessage = () => {
+const showSuccessMessage = () => {
   const success = successTemplate.cloneNode(true);
   const successButton = success.querySelector('.success__button');
 
@@ -57,7 +58,7 @@ const successMessage = () => {
 
 };
 
-const errorMessage = () => {
+const showErrorMessage = () => {
   const error = errorTemplate.cloneNode(true);
   const errorButton = error.querySelector('.error__button');
 
@@ -71,7 +72,7 @@ const errorMessage = () => {
 };
 
 
-const dataErrorMessage = () => {
+const showDataErrorMessage = () => {
   const dataError = dataErrorTemplate.cloneNode(true);
   currentMessage = dataError;
   document.body.append(dataError);
@@ -82,5 +83,5 @@ const dataErrorMessage = () => {
 
 };
 
-export {successMessage, errorMessage, dataErrorMessage};
+export {showSuccessMessage, showErrorMessage, showDataErrorMessage};
 

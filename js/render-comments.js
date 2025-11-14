@@ -1,3 +1,5 @@
+const COMMENTS_STEP = 5;
+
 const bigPicture = document.querySelector('.big-picture');
 const socialCommentsLoader = bigPicture.querySelector('.social__comments-loader');
 const socialCommentShowCount = bigPicture.querySelector('.social__comment-shown-count');
@@ -7,7 +9,6 @@ const socialCommentItem = socialCommentList.querySelector('.social__comment');
 
 let comments = [];
 let currentCommentsCount = 0;
-const COMMENTS_STEP = 5;
 
 // Создание элемента комментария
 const createCommentElement = (comment) => {

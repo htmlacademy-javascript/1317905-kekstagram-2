@@ -1,17 +1,15 @@
 import { debounce } from './util.js';
 import { createPhotosList } from './make-pictures.js';
 
-
-const filtersForm = document.querySelector('.img-filters');
-
 const RANDOM_COUNT = 10;
 const DEBOUNCE_DELAY = 500;
 
-const FILTERS = {
-  FILTER_DEFAULT: 'filter-default',
-  FILTER_RANDOM: 'filter-random',
-  FILTER_DISCUSSED: 'filter-discussed'
+const Filter = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed'
 };
+const filtersForm = document.querySelector('.img-filters');
 
 let currentPhotos = [];
 
@@ -28,7 +26,7 @@ const replacePhotos = (photos) => {
   createPhotosList(photos);
 };
 
-const debouncedRender = debounce(replacePhotos, DEBOUNCE_DELAY);
+const makeDebounceRender = debounce(replacePhotos, DEBOUNCE_DELAY);
 
 
 // Обработчик клика по фильтру
@@ -45,18 +43,18 @@ const onFiltersFormClick = (evt) => {
 
   let filteredPhotos;
   switch (filterClickedButton.id) {
-    case FILTERS.FILTER_DEFAULT:
+    case Filter.DEFAULT:
       filteredPhotos = getDefaultPhotos();
       break;
-    case FILTERS.FILTER_RANDOM:
+    case Filter.RANDOM:
       filteredPhotos = getRandomPhotos();
       break;
-    case FILTERS.FILTER_DISCUSSED:
+    case Filter.DISCUSSED:
       filteredPhotos = getDiscussedPhotos();
       break;
   }
 
-  debouncedRender(filteredPhotos);
+  makeDebounceRender(filteredPhotos);
 };
 
 // Инициализация фильтров
@@ -64,8 +62,8 @@ const initFilters = (photos) => {
   currentPhotos = photos;
 
   filtersForm.classList.remove('img-filters--inactive');
-  filtersForm.addEventListener('click', onFiltersFormClick);
-
 };
+
+filtersForm.addEventListener('click', onFiltersFormClick);
 
 export { initFilters };
